@@ -86,6 +86,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .section-heading { max-width: 760px; margin-bottom: 44px; }
 .section-heading h2, .about-copy h2, .contact-panel h2 { font-size: clamp(36px, 5vw, 62px); line-height: 1.02; letter-spacing: -0.04em; margin: 0 0 16px; }
 .section-heading > p:last-child, .about-copy > p, .contact-panel > p { color: var(--muted); font-size: 18px; }
+.studio-status { display: inline-flex; margin: 14px 0 0; padding: 7px 12px; border: 1px solid rgba(96,185,255,.22); border-radius: 999px; background: rgba(24,68,105,.20); color: #b9dfff !important; font-size: 13px !important; font-weight: 750; letter-spacing: .04em; }
 
 .games-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 20px; align-items: stretch; }
 .game-card {
