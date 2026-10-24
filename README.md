@@ -1,4 +1,4 @@
-# Drovexis Studios Website v9
+# Drovexis Studios Website v10
 
 Official static website for Drovexis Studios, designed for GitHub Pages and `drovexis.com`.
 
@@ -12,6 +12,14 @@ Official static website for Drovexis Studios, designed for GitHub Pages and `dro
 - Support and Privacy pages
 - Search-engine metadata, sitemap, robots.txt and structured data
 - Responsive desktop/mobile layout
+
+## v10 changes
+- Homepage is a studio showcase: games shown as an equal three-card lineup (Gridline Empire + two classified projects)
+- Classified project cards with a tap-to-decrypt animation (always ends in "access denied")
+- Animated canvas backgrounds: drifting embers on the homepage, a live power grid on the Gridline page; both react to the mouse/finger
+- 3D tilt and glare on cards and the Gridline icon (mouse only)
+- "Power the City" browser mini game on the Gridline page
+- Animations pause off-screen and respect the reduced-motion setting
 
 ## v9 changes
 - Gridline Empire page hero now uses the App Store icon (blurred icon background + large icon)

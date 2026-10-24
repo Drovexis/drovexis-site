@@ -121,3 +121,101 @@
   .icon-hero-art img{max-width:220px}
 }
 @media(max-width:720px){.icon-hero{min-height:auto;padding:100px 20px 55px;gap:26px}.icon-hero-art img{max-width:170px}}
+
+/* v10 — interactive layer */
+.anchor-alias{position:relative;top:-90px;display:block;height:0}
+.fx-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;mix-blend-mode:screen}
+.hero .hero-shade{z-index:0}.hero .fx-canvas{z-index:1}
+.icon-hero .fx-canvas{z-index:1;opacity:.9}
+.icon-hero .game-detail-shade{z-index:0}
+
+/* 3D tilt + glare */
+.tilt{--rx:0deg;--ry:0deg;--mx:50%;--my:50%;transform-style:preserve-3d;will-change:transform}
+.js .tilt.is-visible{transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry))}
+.js .tilt.tilting{transition:transform .08s linear,opacity .65s ease}
+.js .tilt.is-visible:not(.tilting){transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .65s ease}
+.tilt{position:relative}
+.tilt::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:5;opacity:0;transition:opacity .3s ease;background:radial-gradient(circle at var(--mx) var(--my),rgba(140,205,255,.18),transparent 45%)}
+.tilt.tilting::before{opacity:1}
+.icon-hero-art.tilt::before{border-radius:23%}
+.info-panel,.news-card{transition:border-color .3s ease}
+.info-panel:hover,.news-card:hover{border-color:rgba(105,185,249,.35)}
+
+/* games lineup */
+.games-lineup{border-top:1px solid var(--line)}
+.lineup-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.game-card{display:flex;flex-direction:column;border-radius:28px;overflow:hidden;border:1px solid rgba(105,185,249,.2);background:linear-gradient(160deg,#0c1d30,#06101c);box-shadow:var(--shadow)}
+.game-card-art{aspect-ratio:16/11;display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,rgba(37,151,255,.3),transparent 60%),linear-gradient(145deg,#071827,#04101a);overflow:hidden}
+.game-card-art img{width:56%;height:auto;border-radius:23%;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5)) drop-shadow(0 0 30px rgba(34,151,255,.25));transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.game-card:hover .game-card-art img{transform:scale(1.06) translateZ(30px)}
+.game-card-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1}
+.game-card h3{font-size:30px;letter-spacing:-.03em;margin:22px 0 8px}
+.game-card-body>p{color:var(--muted);margin:0 0 22px}
+.card-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto}
+.status-live{color:#a5efc2}
+
+/* classified cards */
+.classified{cursor:pointer;border-color:rgba(255,197,106,.2);outline:none}
+.classified:focus-visible{box-shadow:0 0 0 3px rgba(99,191,255,.6),var(--shadow)}
+.classified-art{position:relative;aspect-ratio:16/11;display:grid;place-items:center;overflow:hidden;background:repeating-linear-gradient(135deg,rgba(255,197,106,.05) 0 14px,transparent 14px 28px),radial-gradient(circle at 50% 55%,rgba(255,170,60,.12),transparent 60%),#060d17}
+.classified-noise{position:absolute;inset:-50%;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:noise 1.2s steps(6) infinite}
+@keyframes noise{0%{transform:translate(0,0)}20%{transform:translate(-8%,4%)}40%{transform:translate(6%,-6%)}60%{transform:translate(-4%,8%)}80%{transform:translate(8%,2%)}100%{transform:translate(0,0)}}
+.classified-q{position:relative;font-size:120px;font-weight:900;line-height:1;color:rgba(255,210,140,.85);text-shadow:0 0 40px rgba(255,170,60,.45)}
+.classified-stamp{position:absolute;top:22px;left:-34px;transform:rotate(-30deg);padding:6px 46px;background:rgba(255,197,106,.14);border:1px solid rgba(255,197,106,.45);color:#ffd391;font-size:11px;font-weight:800;letter-spacing:.24em}
+.classified:hover .classified-q,.classified.decrypting .classified-q{animation:glitch .5s steps(2) infinite}
+@keyframes glitch{0%{transform:translate(0);text-shadow:-3px 0 rgba(99,191,255,.8),3px 0 rgba(255,90,90,.7)}25%{transform:translate(-3px,2px)}50%{transform:translate(3px,-1px);text-shadow:3px 0 rgba(99,191,255,.8),-3px 0 rgba(255,90,90,.7)}75%{transform:translate(-1px,-2px)}100%{transform:translate(0)}}
+.file-lines{margin:4px 0 20px;display:grid;gap:8px}
+.file-lines div{display:flex;justify-content:space-between;gap:12px;padding-bottom:8px;border-bottom:1px dashed rgba(153,190,226,.14);font-size:13px}
+.file-lines dt{color:#71879c;letter-spacing:.12em;text-transform:uppercase;font-size:11px}
+.file-lines dd{margin:0;color:#c8d4e0;font-weight:600}
+.redact{color:#1c2a3a;background:#1c2a3a;border-radius:3px;letter-spacing:-.1em}
+.decrypt{margin-top:auto}
+.decrypt-bar{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.decrypt-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffb04a,#ffd391);box-shadow:0 0 14px rgba(255,190,90,.5)}
+.decrypt-msg{margin:10px 0 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8ea2b7;font-weight:700}
+.classified.denied .decrypt-msg{color:#ff8a7a}
+.classified.denied .decrypt-bar span{background:linear-gradient(90deg,#ff6a5a,#ff9d8a)}
+.scramble{font-variant-numeric:tabular-nums}
+
+/* mini game */
+.mini-game-section{border-top:1px solid var(--line)}
+.mini-game{position:relative;display:grid;grid-template-columns:1.35fr 1fr;border-radius:30px;overflow:hidden;border:1px solid rgba(105,185,249,.22);background:linear-gradient(145deg,#0b1d31,#06101c);box-shadow:var(--shadow)}
+.mg-stage{position:relative;min-height:440px;background:linear-gradient(180deg,#040c18 0%,#081a2e 70%,#0b2036 100%)}
+.mg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.mg-hud{position:absolute;top:18px;left:18px;right:18px;display:flex;gap:10px;flex-wrap:wrap}
+.mg-hud div{padding:10px 14px;border-radius:14px;background:rgba(3,9,16,.72);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(8px)}
+.mg-hud span{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#758aa0}
+.mg-hud strong{font-size:22px;font-variant-numeric:tabular-nums}
+.mg-hud small{margin-left:4px;color:#9db0c4;font-size:12px}
+.mg-progress{position:absolute;left:18px;right:18px;bottom:16px;height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.mg-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#287cca,#69c2ff,#ffd391);box-shadow:0 0 18px rgba(105,194,255,.55);transition:width .25s ease}
+.mg-controls{padding:24px;display:flex;flex-direction:column;gap:16px;border-left:1px solid var(--line)}
+.mg-generate{position:relative;display:flex;align-items:center;justify-content:center;gap:16px;min-height:110px;border:0;border-radius:22px;cursor:pointer;color:#04101a;font:inherit;background:linear-gradient(135deg,#7fd0ff,#2b80d5);box-shadow:0 14px 40px rgba(53,138,215,.35),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .08s ease,box-shadow .2s ease;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.mg-generate:hover{box-shadow:0 18px 50px rgba(53,138,215,.5),inset 0 1px 0 rgba(255,255,255,.4)}
+.mg-generate:active,.mg-generate.pressed{transform:scale(.96)}
+.mg-bolt{font-size:44px;filter:drop-shadow(0 0 10px rgba(255,220,120,.8))}
+.mg-generate b{display:block;font-size:24px;text-align:left}
+.mg-generate small{display:block;font-size:13px;opacity:.75;text-align:left}
+.mg-float{position:absolute;pointer-events:none;font-weight:900;color:#fff3c4;text-shadow:0 0 12px rgba(255,200,80,.9);animation:floatUp .8s ease-out forwards}
+@keyframes floatUp{to{transform:translateY(-60px);opacity:0}}
+.mg-shop{display:grid;gap:10px}
+.mg-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;border:1px solid var(--line);background:rgba(6,16,27,.6);color:var(--text);font:inherit;text-align:left;cursor:pointer;transition:border-color .2s ease,background .2s ease,opacity .2s ease,transform .15s ease}
+.mg-item:hover:not(:disabled){border-color:rgba(128,201,255,.55);background:rgba(14,31,49,.8);transform:translateY(-1px)}
+.mg-item:disabled{opacity:.42;cursor:not-allowed}
+.mg-ico{font-size:24px}
+.mg-name{font-weight:700;font-size:15px}
+.mg-name small{display:block;font-weight:500;font-size:12px;color:#8ea2b7}
+.mg-cost{font-weight:800;font-size:14px;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+.mg-cost::after{content:" MWh";font-size:11px;color:#9db0c4;font-weight:600}
+.mg-win{position:absolute;inset:0;z-index:5;display:grid;place-items:center;padding:20px;background:rgba(2,7,13,.72);backdrop-filter:blur(6px);animation:fadeIn .4s ease}
+.mg-win[hidden]{display:none}
+.mg-win-card{max-width:520px;text-align:center;padding:36px 30px;border-radius:26px;border:1px solid rgba(255,197,106,.35);background:radial-gradient(circle at 50% 0%,rgba(255,197,106,.16),transparent 60%),#0a1727;box-shadow:var(--shadow)}
+.mg-win-card h3{font-size:34px;letter-spacing:-.03em;margin:0 0 10px}
+.mg-win-card p{color:var(--muted)}
+.mg-win-card .hero-actions{justify-content:center;margin-top:20px}
+.mg-win-card button.button{font:inherit;font-weight:750;font-size:14px;cursor:pointer}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+@media(max-width:1020px){.lineup-grid{grid-template-columns:1fr 1fr}.lineup-grid .game-card:first-child{grid-column:1/-1;flex-direction:row}.lineup-grid .game-card:first-child .game-card-art{aspect-ratio:auto;flex:0 0 42%}.mini-game{grid-template-columns:1fr}.mg-controls{border-left:0;border-top:1px solid var(--line)}}
+@media(max-width:720px){.lineup-grid{grid-template-columns:1fr}.lineup-grid .game-card:first-child{flex-direction:column}.lineup-grid .game-card:first-child .game-card-art{aspect-ratio:16/11}.game-card-body{padding:22px 20px 24px}.card-actions .button{flex:1 1 100%;white-space:nowrap}.mg-stage{min-height:300px}.mg-hud{top:12px;left:12px;right:12px;gap:6px}.mg-hud div{padding:8px 10px}.mg-hud strong{font-size:18px}.mg-controls{padding:16px}.mg-generate{min-height:92px}.icon-hero .fx-canvas{opacity:.6}}
+@media(prefers-reduced-motion:reduce){.classified-noise,.classified-q{animation:none!important}.js .tilt.is-visible{transform:none}}

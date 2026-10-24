@@ -57,6 +57,7 @@
   <main>
     <section class="game-detail-hero icon-hero">
       <div class="icon-hero-bg" aria-hidden="true"></div>
+      <canvas class="fx-canvas" data-fx="grid" aria-hidden="true"></canvas>
       <div class="game-detail-shade"></div>
       <div class="game-detail-content reveal">
         <img class="game-detail-icon" src="assets/gridline-empire-icon.webp" alt="Gridline Empire app icon" width="116" height="116" />
@@ -65,10 +66,10 @@
         <p>Build. Manage. Expand. Grow your power operation and keep pushing the grid forward.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="https://apps.apple.com/us/app/gridline-empire/id6809161844" target="_blank" rel="noopener">Download on the App Store</a>
-          <a class="button button-ghost" href="support.html">Game Support</a>
+          <a class="button button-ghost" href="#play">⚡ Try it in your browser</a>
         </div>
       </div>
-      <div class="icon-hero-art reveal" aria-hidden="true">
+      <div class="icon-hero-art tilt reveal" data-tilt data-tilt-max="14" aria-hidden="true">
         <img src="assets/gridline-empire-icon.webp" alt="" width="900" height="900" fetchpriority="high" />
       </div>
     </section>
@@ -87,11 +88,57 @@
         <p>Gridline Empire is centered on expansion, upgrades and the satisfaction of pushing a small operation toward something much larger.</p>
       </div>
       <div class="feature-grid feature-grid-large">
-        <article class="info-panel reveal"><span class="panel-number">01</span><h3>Build</h3><p>Develop the foundation of your energy operation and keep adding to the grid.</p></article>
-        <article class="info-panel reveal"><span class="panel-number">02</span><h3>Manage</h3><p>Balance growth, upgrades and the systems that keep your operation moving.</p></article>
-        <article class="info-panel reveal"><span class="panel-number">03</span><h3>Expand</h3><p>Push beyond the early game and keep working toward larger milestones.</p></article>
-        <article class="info-panel reveal"><span class="panel-number">04</span><h3>Progress</h3><p>Build momentum over time and keep improving the scale of your operation.</p></article>
+        <article class="info-panel tilt reveal" data-tilt><span class="panel-number">01</span><h3>Build</h3><p>Develop the foundation of your energy operation and keep adding to the grid.</p></article>
+        <article class="info-panel tilt reveal" data-tilt><span class="panel-number">02</span><h3>Manage</h3><p>Balance growth, upgrades and the systems that keep your operation moving.</p></article>
+        <article class="info-panel tilt reveal" data-tilt><span class="panel-number">03</span><h3>Expand</h3><p>Push beyond the early game and keep working toward larger milestones.</p></article>
+        <article class="info-panel tilt reveal" data-tilt><span class="panel-number">04</span><h3>Progress</h3><p>Build momentum over time and keep improving the scale of your operation.</p></article>
       </div>
+    </section>
+
+    <section class="section mini-game-section" id="play" aria-labelledby="play-title">
+      <div class="section-heading reveal">
+        <p class="eyebrow">TRY IT HERE</p>
+        <h2 id="play-title">Power the city.</h2>
+        <p>A tiny taste of the Gridline Empire feeling, right in your browser. Generate power, build upgrades and light up every building. The full game goes much further.</p>
+      </div>
+
+      <div class="mini-game reveal" data-minigame>
+        <div class="mg-stage">
+          <canvas class="mg-canvas" aria-label="City skyline that lights up as you supply more power" role="img"></canvas>
+          <div class="mg-hud">
+            <div><span>Energy</span><strong data-mg="energy">0</strong><small>MWh</small></div>
+            <div><span>Output</span><strong data-mg="rate">0</strong><small>MW/s</small></div>
+            <div><span>City powered</span><strong data-mg="pct">0%</strong></div>
+          </div>
+          <div class="mg-progress" aria-hidden="true"><span data-mg="bar"></span></div>
+        </div>
+
+        <div class="mg-controls">
+          <button class="mg-generate" type="button" data-mg="tap">
+            <span class="mg-bolt" aria-hidden="true">⚡</span>
+            <span><b>Generate</b><small>Tap for power</small></span>
+          </button>
+          <div class="mg-shop" role="list">
+            <button class="mg-item" type="button" role="listitem" data-buy="turbine"><span class="mg-ico" aria-hidden="true">🌀</span><span class="mg-name">Wind Turbine<small data-own="turbine">Owned: 0</small></span><span class="mg-cost" data-cost="turbine">10</span></button>
+            <button class="mg-item" type="button" role="listitem" data-buy="solar"><span class="mg-ico" aria-hidden="true">☀️</span><span class="mg-name">Solar Field<small data-own="solar">Owned: 0</small></span><span class="mg-cost" data-cost="solar">50</span></button>
+            <button class="mg-item" type="button" role="listitem" data-buy="gas"><span class="mg-ico" aria-hidden="true">🏭</span><span class="mg-name">Gas Plant<small data-own="gas">Owned: 0</small></span><span class="mg-cost" data-cost="gas">250</span></button>
+            <button class="mg-item" type="button" role="listitem" data-buy="reactor"><span class="mg-ico" aria-hidden="true">⚛️</span><span class="mg-name">Reactor<small data-own="reactor">Owned: 0</small></span><span class="mg-cost" data-cost="reactor">1,200</span></button>
+          </div>
+        </div>
+
+        <div class="mg-win" data-mg="win" hidden>
+          <div class="mg-win-card">
+            <p class="eyebrow">CITY POWERED</p>
+            <h3>You lit up the whole city.</h3>
+            <p>Finished in <b data-mg="time">0s</b>. That was the warm-up. In Gridline Empire, this is where your empire starts.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="https://apps.apple.com/us/app/gridline-empire/id6809161844" target="_blank" rel="noopener">Get the full game ↗</a>
+              <button class="button button-ghost" type="button" data-mg="reset">Play again</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="development-note reveal">This mini game is a simplified browser demo made for the website. It is not the actual Gridline Empire gameplay.</p>
     </section>
 
     <section class="section release-panel reveal">
