@@ -85,7 +85,9 @@
     start();
   }
 
-  // Studio: drifting embers + constellation lines that reach for the pointer
+  // Studio: drifting embers that gather into constellations on their own.
+  // Invisible "gatherers" wander slowly across the scene, pulling nearby embers
+  // together and linking them, then drift on and let them go.
   function embersScene(s) {
     const count = Math.round(Math.min(110, Math.max(36, (s.w * s.h) / 14000)));
     const pts = Array.from({ length: count }, () => ({
@@ -94,15 +96,42 @@
       r: 0.6 + Math.random() * 1.8, gold: Math.random() < 0.45, tw: Math.random() * 6.28,
     }));
     const link = Math.min(140, s.w / 8);
+    const wide = s.w > 720;
+    const gatherers = Array.from({ length: wide ? 2 : 1 }, (_, i) => ({
+      x: 0, y: 0, ph: Math.random() * 100 + i * 37,
+      fx: 0.045 + Math.random() * 0.03, fy: 0.06 + Math.random() * 0.03,
+      // keep them mostly over the artwork, away from the headline on desktop
+      x0: wide ? 0.42 : 0.08, x1: wide ? 0.96 : 0.92, y0: 0.18, y1: 0.88,
+    }));
+    const reach = wide ? 210 : 160;
+    let time = 0;
     return {
       draw(ctx, dt) {
         ctx.clearRect(0, 0, s.w, s.h);
+        time += dt;
+        for (const g of gatherers) {
+          const u = 0.5 + 0.5 * Math.sin(time * g.fx * 6.283 + g.ph);
+          const v = 0.5 + 0.5 * Math.sin(time * g.fy * 6.283 + g.ph * 1.7);
+          g.x = s.w * (g.x0 + (g.x1 - g.x0) * u);
+          g.y = s.h * (g.y0 + (g.y1 - g.y0) * v);
+          // strength breathes in and out so clusters form, hold, then release
+          g.k = 0.25 + 0.75 * Math.max(0, Math.sin(time * 0.3 + g.ph));
+        }
         for (const p of pts) {
-          if (s.active) {
-            const dx = s.px - p.x, dy = s.py - p.y, d2 = dx * dx + dy * dy;
-            if (d2 < 40000) { const f = (1 - d2 / 40000) * 40; p.vx += (dx / 200) * f * dt; p.vy += (dy / 200) * f * dt; }
+          let held = 0;
+          for (const g of gatherers) {
+            const dx = g.x - p.x, dy = g.y - p.y, d2 = dx * dx + dy * dy, R = reach * reach;
+            if (d2 < R) {
+              const near = 1 - d2 / R;
+              const f = near * 120 * g.k;
+              p.vx += (dx / reach) * f * dt; p.vy += (dy / reach) * f * dt;
+              // swirl a little so clusters orbit instead of collapsing to a dot
+              p.vx += (-dy / reach) * 18 * g.k * dt; p.vy += (dx / reach) * 18 * g.k * dt;
+              held = Math.max(held, near * g.k);
+            }
           }
-          p.vx *= 0.985; p.vy = p.vy * 0.985 + (-10 - p.vy) * 0.01;
+          const damp = 0.985 - held * 0.03;
+          p.vx *= damp; p.vy = p.vy * damp + (-10 - p.vy) * 0.01 * (1 - held);
           p.x += p.vx * dt; p.y += p.vy * dt; p.tw += dt * 2;
           if (p.y < -10) { p.y = s.h + 10; p.x = Math.random() * s.w; }
           if (p.x < -10) p.x = s.w + 10; else if (p.x > s.w + 10) p.x = -10;
@@ -114,9 +143,9 @@
             const b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
             if (d < link) { ctx.strokeStyle = `rgba(99,191,255,${(1 - d / link) * 0.18})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
           }
-          if (s.active) {
-            const d = Math.hypot(a.x - s.px, a.y - s.py);
-            if (d < 180) { ctx.strokeStyle = `rgba(150,215,255,${(1 - d / 180) * 0.45})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(s.px, s.py); ctx.stroke(); }
+          for (const g of gatherers) {
+            const d = Math.hypot(a.x - g.x, a.y - g.y);
+            if (d < reach) { ctx.strokeStyle = `rgba(160,220,255,${Math.min(0.7, (1 - d / reach) * 0.75 * g.k)})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(g.x, g.y); ctx.stroke(); }
           }
         }
         for (const p of pts) {
