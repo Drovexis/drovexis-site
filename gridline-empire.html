@@ -11,10 +11,16 @@
   <meta property="og:description" content="Build, manage and expand your power operation. Gridline Empire is available now on the App Store." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://drovexis.com/gridline-empire.html" />
-  <meta property="og:image" content="https://drovexis.com/assets/gridline-empire-feature.png" />
+  <meta property="og:image" content="https://drovexis.com/assets/gridline-empire-share.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@DrovexisStudios" />
-  <link rel="icon" href="assets/drovexis-logo.png" />
+  <meta name="twitter:image" content="https://drovexis.com/assets/gridline-empire-share.jpg" />
+  <link rel="icon" type="image/png" href="assets/favicon-64.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="styles.css" />
   <script type="application/ld+json">
   {
@@ -37,10 +43,11 @@
 <body>
   <header class="site-header compact-header">
     <a class="brand" href="index.html" aria-label="Drovexis Studios home">
-      <img src="assets/drovexis-logo.png" alt="Drovexis Studios emblem" />
+      <img src="assets/drovexis-logo.webp" alt="Drovexis Studios emblem" width="40" height="40" />
       <span>DROVEXIS <b>STUDIOS</b></span>
     </a>
-    <nav class="site-nav desktop-only" aria-label="Game navigation">
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">☰</button>
+    <nav id="site-nav" class="site-nav" aria-label="Game navigation">
       <a href="index.html">Studio Home</a>
       <a href="support.html">Support</a>
       <a href="https://apps.apple.com/us/app/gridline-empire/id6809161844" target="_blank" rel="noopener">App Store ↗</a>
@@ -48,11 +55,11 @@
   </header>
 
   <main>
-    <section class="game-detail-hero">
-      <img class="game-detail-bg" src="assets/gridline-empire-feature.png" alt="Gridline Empire power facility at sunset" />
+    <section class="game-detail-hero icon-hero">
+      <div class="icon-hero-bg" aria-hidden="true"></div>
       <div class="game-detail-shade"></div>
       <div class="game-detail-content reveal">
-        <img class="game-detail-icon" src="assets/gridline-empire-icon.png" alt="Gridline Empire app icon" />
+        <img class="game-detail-icon" src="assets/gridline-empire-icon.webp" alt="Gridline Empire app icon" width="116" height="116" />
         <p class="eyebrow">DROVEXIS STUDIOS PRESENTS</p>
         <h1>Gridline Empire</h1>
         <p>Build. Manage. Expand. Grow your power operation and keep pushing the grid forward.</p>
@@ -60,6 +67,9 @@
           <a class="button button-primary" href="https://apps.apple.com/us/app/gridline-empire/id6809161844" target="_blank" rel="noopener">Download on the App Store</a>
           <a class="button button-ghost" href="support.html">Game Support</a>
         </div>
+      </div>
+      <div class="icon-hero-art reveal" aria-hidden="true">
+        <img src="assets/gridline-empire-icon.webp" alt="" width="900" height="900" fetchpriority="high" />
       </div>
     </section>
 
@@ -95,7 +105,7 @@
   </main>
 
   <footer class="site-footer">
-    <div class="footer-brand"><img src="assets/drovexis-logo.png" alt="" /><span>Drovexis Studios</span></div>
+    <div class="footer-brand"><img src="assets/drovexis-logo.webp" alt="" width="34" height="34" /><span>Drovexis Studios</span></div>
     <div class="footer-links"><a href="index.html">Home</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="mailto:contact@drovexis.com">Contact</a></div>
     <p>© <span id="year"></span> Drovexis Studios. All rights reserved.</p>
   </footer>

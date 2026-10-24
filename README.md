@@ -1,4 +1,4 @@
-# Drovexis Studios Website v5
+# Drovexis Studios Website v9
 
 Official static website for Drovexis Studios, designed for GitHub Pages and `drovexis.com`.
 
@@ -12,6 +12,15 @@ Official static website for Drovexis Studios, designed for GitHub Pages and `dro
 - Support and Privacy pages
 - Search-engine metadata, sitemap, robots.txt and structured data
 - Responsive desktop/mobile layout
+
+## v9 changes
+- Gridline Empire page hero now uses the App Store icon (blurred icon background + large icon)
+- Mobile menu added to Gridline Empire, Support and Privacy pages
+- Fixed the broken "About" link on the Support page
+- Page content stays visible if scripts fail to load
+- Images converted to WebP (about 90% smaller); small favicon and Apple touch icon added
+- New share images for links posted on social media
+- Inter font now actually loads; unused styles removed
 
 ## Updating GitHub Pages
 Upload the **contents of this folder** to the root of the `Drovexis/drovexis-site` repository. Do not upload the ZIP itself and do not wrap the files in an `mnt` folder.

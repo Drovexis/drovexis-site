@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy | Drovexis Studios</title>
   <meta name="description" content="Website privacy information for Drovexis Studios." />
-  <link rel="icon" href="assets/drovexis-logo.png" />
+  <link rel="icon" type="image/png" href="assets/favicon-64.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" />
+  <script>document.documentElement.classList.add('js')</script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html"><img src="assets/drovexis-logo.png" alt="Drovexis Studios emblem" /><span>DROVEXIS <b>STUDIOS</b></span></a>
-    <nav class="site-nav"><a href="index.html#games">Games</a><a href="support.html">Support</a></nav>
+    <a class="brand" href="index.html"><img src="assets/drovexis-logo.webp" alt="Drovexis Studios emblem" width="40" height="40" /><span>DROVEXIS <b>STUDIOS</b></span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">☰</button>
+    <nav id="site-nav" class="site-nav" aria-label="Primary navigation"><a href="index.html#games">Games</a><a href="index.html#studio">Studio</a><a href="gridline-empire.html">Gridline Empire</a><a href="support.html">Support</a></nav>
   </header>
   <main class="legal-page">
     <p class="eyebrow">PRIVACY</p>
@@ -28,5 +34,6 @@
     <p>Privacy questions can be sent to <a href="mailto:contact@drovexis.com">contact@drovexis.com</a>.</p>
     <p><a href="index.html">← Back to Drovexis Studios</a></p>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
